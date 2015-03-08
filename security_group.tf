@@ -17,6 +17,25 @@ resource "aws_security_group" "default-group" {
   }
 }
 
+/* Nat security group */
+resource "aws_security_group" "nat" {
+  name = "nat"
+  description = "nat security group that allows inbound and outbound traffic from all instances in the VPC"
+  vpc_id = "${aws_vpc.default.id}"
+  
+  ingress {
+    from_port   = "0"
+    to_port     = "65535"
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+    self        = true
+  }
+  
+  tags { 
+    Name = "nat" 
+  }
+}
+
 /* Security group for the web */
 resource "aws_security_group" "web" {
   name = "web"

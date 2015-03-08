@@ -14,7 +14,7 @@ resource "aws_instance" "web" {
 
 /* Load balancer */
 resource "aws_elb" "app" {
-  name = "airpair-example-elb"
+  name = "web-elb"
   subnets = ["${aws_subnet.public_a.id}", "${aws_subnet.public_b.id}", "${aws_subnet.public_d.id}", "${aws_subnet.public_e.id}"]
   security_groups = ["${aws_security_group.default-group.id}", "${aws_security_group.web.id}"]
   listener {

@@ -4,8 +4,8 @@ resource "aws_route53_zone" "primary" {
 
 resource "aws_route53_record" "www" {
    zone_id = "${aws_route53_zone.primary.zone_id}"
-   name = "www.example.com"
+   name = "www.rapperquotes.net"
    type = "CNAME"
-   ttl = "300"
+   ttl = "10"
    records = ["${aws_elb.app.dns_name}"]
 }
